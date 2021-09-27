@@ -86,7 +86,7 @@ cardano-cli transaction build-raw \
 --out-file matx.raw
 
 cardano-cli transaction sign  \
---signing-key-file $PAYMENT_KEY  \
+--signing-key-file $PAYMENT_KEYFILE  \
 --signing-key-file policy/policy.skey  \
 --mainnet --tx-body-file matx.raw  \
 --out-file matx.signed
@@ -98,8 +98,8 @@ cat metadata.json
 read -p "Mint token? [y,n]" mint 
 case $mint in  
   y|Y) cardano-cli transaction submit --tx-file matx.signed --mainnet ;; 
-  n|N) echo "Transaction not submitted" ;; 
-  *) echo "WHAT?!?!?" ;; 
+  n|N) echo "Transaction not submitted" && exit;; 
+  *) echo "Not an option" && exit ;; 
 esac
 
 

@@ -1,4 +1,6 @@
 #!/bin/bash
+duration=$1
+
 if [ -e policy/policy.script ]
 then
   read -p "A policy already exists. Delete it? [y,n]" delete_policy
@@ -16,7 +18,7 @@ cardano-cli address key-gen \
 cardano-cli query protocol-parameters --mainnet --out-file protocol.json
 
 
-slotnumber=$(expr $(cardano-cli query tip --mainnet | jq .slot?) + 100000)
+slotnumber=$(expr $(cardano-cli query tip --mainnet | jq .slot?) + $duration)
 
 echo "{" >> policy/policy.script
 echo "  \"type\": \"all\"," >> policy/policy.script
