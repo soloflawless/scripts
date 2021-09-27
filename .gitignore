@@ -1,1 +1,7 @@
 *.code-workspace
+consolidate-utxo.sh
+protocol.json
+*raw
+*signed
+metadata.json
+policy/
